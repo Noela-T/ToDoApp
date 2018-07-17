@@ -11,3 +11,6 @@ to run the application.
 
 The program allows you to create a to-do list, and also add and delete items to
 and from the list respectively.
+ 
+ Still Pending are input validators. The program as of now does not check the 
+ input given by the user to ensure that it is valid and does not crash the program.
