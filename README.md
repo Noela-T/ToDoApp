@@ -11,6 +11,9 @@ to run the application.
 
 The program allows you to create a to-do list, and also add and delete items to
 and from the list respectively.
- 
- Still Pending are input validators. The program as of now does not check the 
- input given by the user to ensure that it is valid and does not crash the program.
+
+By following the steps as the program runs, you can easily add and delete from
+To-Do List and see the changes being made by your input.
+
+The program now checks input given by user to ensure that it is in the correct
+format needed to run the program smoothly without it crashing.
