@@ -5,52 +5,42 @@ from datetime import date
 #index numbers printed when listing them. This enables tasks to be easily deleted
 #by referencing their index numbers.
 indexDict={}
-timeDict={}
 tasks={}
-index = 1
+sortedtasks=[]
 #adds a new item to To-Do list
 def addTask(task,time):
-    global index
-    #converts time to a datetime object to enable sorting of time
-    tasks[index]=task
-    timeDict[timevalue]=index
-    index += 1
+    tasks[time]=task
+    tasklist=[time,task]
 
 #lists the items on To-Do list
 def listTasks():
     #indexD is a variable used to list the items so they can be easily accesssible
     #from their index numbers when listed
-    global indexD
+    global indexD,sortedtasks
     indexD = 1
     #sorts through the dictionaries but returns a list object
     sortedtasks=sorted(tasks.items())
-    sortedtime=sorted(timeDict.items())
     #adding values to indexDict
-    for i in sortedtime:
+    for i in sortedtasks:
         indexDict[indexD]=i[0]
         indexD += 1
     #Printing out to do list
     print ("*****MY TO-DO LIST*****")
     if tasks == {}:
         print ("\n\n\n<EMPTY TO-DO LIST>\n\n\n")
-    for i in sortedtime:
-        for j in sortedtasks:
-            if (i[1]==j[0]):
-                for key, value in indexDict.items():
-                    if (i[0]==indexDict[key]):
-                        print ("  "+str(key)+". " + i[0].strftime("%H:%M")+" -" + j[1])
+    for i in sortedtasks:
+        for key, value in indexDict.items():
+            if (i[0]==indexDict[key]):
+                print (" "+str(key)+". "+i[0].strftime("%H:%M")+" -"+i[1])
     return 0
 
 def deleteTask(num):
     global indexD
     for key, value in indexDict.copy().items():
         if (num == key):
-            for timekey, value in timeDict.copy().items():
-                if (timekey==indexDict[key]):
-                    for taskkey, value in tasks.copy().items():
-                        if (taskkey==timeDict[timekey]):
-                            del tasks[taskkey]
-                    del timeDict[timekey]
+            for taskkey, value in tasks.copy().items():
+                if (taskkey==indexDict[key]):
+                    del tasks[taskkey]
             del indexDict[key]
     indexD -= 1
 
@@ -61,7 +51,7 @@ while True:
     try:
         timeinput=input("Time for task(e.g 19:30): ")
         print ("\n")
-        timevalue=datetime.strptime(time,"%H:%M")
+        timevalue=datetime.strptime(timeinput,"%H:%M")
     except ValueError:
         print ("Please enter a valid 24-hour time format as shown in the example.")
     else:
